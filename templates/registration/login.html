@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  {% if not user.is_authenticated %}
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-success" type="submit">Login</button>
+    </form>
+    <p>
+        Ainda não é usuário? <a href="{% url 'create_user' %}">Cadastre-se agora!</a>
+    </p>
+  {% else %}
+    <h3>{{ user.get_username }}, deseja sair do sistema? <a href="{% url 'logout_view' %}">Clique aqui.</a></h3>
+  {% endif %}
+
+{% endblock %}

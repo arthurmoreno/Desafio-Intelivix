@@ -1,0 +1,19 @@
+
+{% if searched_url %}
+    <table class="table table-striped top-divider url-table">
+        <thead>
+        <tr>
+            <th class="url-th">Short id</th>
+            <th class="url-th">Url</th>
+            <th class="url-th">Data de criação</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ searched_url.short_id }}</th>
+                <td class="url-field"->{{ searched_url.http_url }}</td>
+                <td>{{ searched_url.pub_date }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}

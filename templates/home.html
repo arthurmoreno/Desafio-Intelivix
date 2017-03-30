@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Bem vindo {{ user.get_username }}</h2>
+
+    <h4>Digite no campo abaixo a url que deseja-se encurtar:</h4>
+
+    <form action="/shorten/" method="POST">{% csrf_token %}
+        <input class="form-control field-form" type="text" name="url" placeholder="Url">
+        <br>
+        <button class="btn btn-info" type="submit">Encurtar</button>
+    </form>
+
+    {% if short_url %}
+        <h4>Sua url encurtada é: {{short_url}}</h4>
+    {% endif %}
+
+    {% if urls %}
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#search-div">Buscar Url</a>
+                </h4>
+            </div>
+            <div id="search-div" class="collapse">
+                <div id="search-form-div">
+                    <h4>Digite o short id da url encurtada que deseja buscar:</h4>
+                    <form id="search-form" action="/search/" method="POST">{% csrf_token %}
+                        <input class="form-control field-form" type="text" name="short_id" placeholder="Short Id">
+                        <br>
+                        <button class="btn btn-info" type="submit">Buscar</button>
+                    </form>
+                </div>
+
+                <div id="search-table-div"></div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#urlTable">Urls Cadastradas</a>
+                </h4>
+            </div>
+            <div id="urlTable" class="collapse">
+                <table class="table table-striped url-table">
+                    <thead>
+                    <tr>
+                        <th class="url-th">Short id</th>
+                        <th class="url-th">Url</th>
+                        <th class="url-th">Data de criação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for url in urls %}
+                        <tr>
+                            <th scope="row">{{ url.short_id }}</th>
+                            <td class="url-field"->{{ url.http_url }}</td>
+                            <td>{{ url.pub_date }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <a href="{% url 'export_cvs' %}">Exportar Urls</a>
+
+    {% endif %}
+
+{% endblock %}

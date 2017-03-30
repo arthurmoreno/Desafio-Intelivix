@@ -1,0 +1,30 @@
+/************************/
+/*  CSS do app de urls  */
+/************************/
+
+
+.url-table {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.url-th {
+    text-align: center;
+}
+
+.url-field {
+    white-space: normal;
+    text-align: -webkit-auto;
+}
+
+.hidden {
+     display: none;
+}
+
+.button-div {
+    text-align: center;
+}
+
+#search-form-div {
+    margin: 15px;
+}
