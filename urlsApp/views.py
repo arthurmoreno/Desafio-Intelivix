@@ -54,7 +54,7 @@ def home(request):
 
 
 # View that redirects some shorten url to the original page
-def redirect_original(short_id):
+def redirect_original(request, short_id):
     url = get_object_or_404(Urls, pk=short_id)
     url.count += 1
     url.save()

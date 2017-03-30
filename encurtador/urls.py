@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^shorten/$', urlsapp_view.shorten_url, name='shorten'),
     url(r'^export_cvs/$', urlsapp_view.export_cvs, name='export_cvs'),
     url(r'^search/$', urlsapp_view.search_url, name='search_url'),
-    url('^(?P<short_id>\w{6})$', urlsapp_view.redirect_original, name='redirect_original'),
+    url(r'^(?P<short_id>\w{6})$', urlsapp_view.redirect_original, name='redirect_original'),
 ]
 
 

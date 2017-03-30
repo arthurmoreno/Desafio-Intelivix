@@ -14,7 +14,7 @@
     </form>
 
     {% if short_url %}
-        <h4>Sua url encurtada é: {{short_url}}</h4>
+        <h4>Sua url encurtada é: <a href="{{short_url}}">{{short_url}}</a></h4>
     {% endif %}
 
     {% if urls %}
@@ -57,7 +57,9 @@
                     <tbody>
                     {% for url in urls %}
                         <tr>
-                            <th scope="row">{{ url.short_id }}</th>
+                            <th scope="row">
+                                <a href="{% url 'redirect_original' short_id=url.short_id %}">{{url.short_id}}</a>
+                            </th>
                             <td class="url-field"->{{ url.http_url }}</td>
                             <td>{{ url.pub_date }}</td>
                         </tr>

@@ -10,7 +10,9 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">{{ searched_url.short_id }}</th>
+                <th scope="row">
+                    <a href="{% url 'redirect_original' short_id=searched_url.short_id %}">{{searched_url.short_id}}</a>
+                </th>
                 <td class="url-field"->{{ searched_url.http_url }}</td>
                 <td>{{ searched_url.pub_date }}</td>
             </tr>
