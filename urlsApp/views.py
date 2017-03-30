@@ -6,11 +6,11 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
-from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render, render_to_response
 
 from utils import get_short_code
+from forms import AuthenticationCustomForm
 from models import Urls
 
 
@@ -24,10 +24,15 @@ def login_view(request):
             login(request, user)
             return redirect('/')
         else:
-            # TODO: fazer o erro de invalid login
-            return render(request, 'registration/login.html')
+            form = AuthenticationCustomForm()
+            error = True
+            context = {
+                'form': form,
+                'error': error
+            }
+            return render(request, 'registration/login.html', context)
     else:
-        form = AuthenticationForm()
+        form = AuthenticationCustomForm()
         context = {'form': form}
         return render(request, 'registration/login.html', context)
 

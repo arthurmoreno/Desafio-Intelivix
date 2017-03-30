@@ -5,7 +5,10 @@
 {% block content %}
   {% if not user.is_authenticated %}
     <h2>Login</h2>
-    <form method="post">
+    {% if error %}
+      <h4>Falha na autenticação. Verifique se o usuário e senha estão corretos.</h4>
+    {% endif %}
+    <form method="post" class="form">
       {% csrf_token %}
       {{ form.as_p }}
       <button class="btn btn-success" type="submit">Login</button>
